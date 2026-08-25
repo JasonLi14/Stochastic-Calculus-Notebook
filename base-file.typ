@@ -1,5 +1,6 @@
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/showybox:2.0.4": showybox
+#import "@preview/fletcher:0.5.8" as fletcher: *
 
 #let colors = (
   rgb("#9E9E9E"),
@@ -34,6 +35,19 @@
 
   show: thmrules
 
+  set figure(
+    numbering: (..nums) => {
+      let chapter = counter(heading).get().at(0)
+      let section = counter(heading).get().at(1)
+      numbering(
+        "1.1.1",
+        chapter,
+        section,
+        nums.pos().at(0),
+      )
+    },
+  )
+  
   set page(
     numbering: "1",
     number-align: center,
@@ -73,7 +87,7 @@
 
   if abstract != none [#align(center)[#abstract]]
 
-  set outline(indent: 1em)
+  set outline(indent: 0em)
 
   show outline: set heading(numbering: none)
   show outline: set par(first-line-indent: 0em)
@@ -89,7 +103,7 @@
   // Main body.
   set par(
     justify: true,
-    first-line-indent: 1em,
+    first-line-indent: 0em,
   )
 
   body
@@ -211,12 +225,13 @@
 
 #let definition = definition-style("definition", "Definition")
 #let proposition = definition-style("proposition", "Proposition")
-#let remark = definition-style("remark", "Remark")
+#let remark-style = builder-thmline(color: colors.at(12))
+#let remark = remark-style("remark", "Remark")
 #let observation = definition-style("observation", "Observation")
 
 #let example-style = builder-thmline(color: colors.at(16))
 
-#let example = example-style("example", "Example").with(numbering: none)
+#let example = example-style("example", "Example")
 
 #let proof(body, name: none) = {
   thmtitle[Proof]

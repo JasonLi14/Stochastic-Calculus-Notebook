@@ -1,9 +1,6 @@
 #import "../base-file.typ": *
 
-#show: dvdtyp.with(
-    title: "",
-    subtitle: [],
-)
+#show: dvdtyp.with()
 
 = Binomial Asset Pricing Model 
 

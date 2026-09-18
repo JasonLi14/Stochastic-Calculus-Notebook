@@ -230,8 +230,12 @@
 #let observation = definition-style("observation", "Observation")
 
 #let example-style = builder-thmline(color: colors.at(16))
-
 #let example = example-style("example", "Example")
+
+#let named_equations(content, name) = {
+  let numbering_func(it) = [(#name)];
+  math.equation(block: true, numbering: numbering_func, content)
+}
 
 #let proof(body, name: none) = {
   thmtitle[Proof]
@@ -243,3 +247,22 @@
   h(1fr)
   $square$
 }
+
+#let equation-numbering = counter => {
+  let heading = counter(heading).get()
+  let equation = counter(math.equation).get()
+
+  numbering(
+    "1.1.1",
+    heading.at(0),
+    heading.at(1),
+    equation,
+  )
+}
+
+#let flips = last => $omega_1 dots omega_(last)$
+
+#let rnEE(body) = {
+  $tilde(EE)_(body)$
+}
+

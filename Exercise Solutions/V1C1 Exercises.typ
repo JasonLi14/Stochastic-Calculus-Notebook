@@ -4,7 +4,7 @@
 
 = Binomial Asset Pricing Model
 #problem[
-  Assurne in the one-period binomial market  that both $H$ and $T$ have positive probability of occurring. Show that the condition that $0 < d < 1 + r < u$ precludes arbitrage. In other words, show that if $X_0 = 0$ and 
+  Assume in the one-period binomial market  that both $H$ and $T$ have positive probability of occurring. Show that the condition that $0 < d < 1 + r < u$ precludes arbitrage. In other words, show that if $X_0 = 0$ and 
   $ X_1 = Delta_0 S_1 + (1+r) (X_0 - Delta_0 S_0) $
   then we cannot have $X_1$ strictly positive with positive probability unless $X_1$ is strictly negative with positive probability as well, and this is the case regardless of the choice of the number $Delta_0$.
 ]

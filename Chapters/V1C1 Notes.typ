@@ -188,7 +188,7 @@ $ Delta_i (omega_1 dots omega_i) = frac(V_(n+1)(omega_1 dots omega_i H) - V_(n+1
 Forward recursively define 
 $ X_(i+1) = Delta_i S_(i+1) + (1+r)(V_i - Delta_i S_i) $
 Then, 
-$ X_N (omega_1 dots omega_N) = V_N(omega_1 dots omega_N) $
+$ X_N (omega_1 dots omega_N) = V_N (omega_1 dots omega_N) $
 for all $omega_1 dots omega_N$.
 ]
 #definition("Price of Derivative")[Given that the first $n$ tosses are $omega_1 dots omega_n$, define the price of the derivative security at time $n$ to be $V_n (omega_1 ... omega_n)$. Therefore, the price of the derivative security at time zero is $V_0$. ]

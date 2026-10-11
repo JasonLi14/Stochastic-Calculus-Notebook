@@ -1,6 +1,10 @@
 #import "../base-file.typ": *
 
-#show: dvdtyp.with()
+#show: dvdtyp.with(
+    title: "State Prices",
+    subtitle: [Volume 1, Chapter 3],
+    abstract: ""
+)
 
 = State Prices
 == Change of Measure
@@ -139,41 +143,7 @@ This is known as the HARA (hyperbolic absolute risk aversion) class.
 The main idea in CAPM is the following problem: given initial wealth $X_0$ and a Utility function $U(X_N)$, find an adapted portfolio process $Delta_0, dots, Delta_(N-1)$ that maximizes $EE U (X_n)$, subject to $X_(n+1) = Delta_n S_(n+1) + (1+r)(X_n - Delta_n S_n)$ (*Problem CAPM 1*).
 
 #example[Consider the following two-period model with $r = 1/4$. 
-  #align(center,
-  cetz.canvas({
-    import cetz.draw: *
-    
-    let s = 1.2
-    let x0 = 0
-    let x1 = 4
-    let x2 = 8
-    
-    let y0 = 0
-    let y1h = 1
-    let y1t = -1
-    let y2hh = 2
-    let y2ht = 0
-    let y2tt = -2
-    
-    // Draw tree branches
-    line((x0 + s, y0), (x1 - s, y1h))
-    line((x0 + s, y0), (x1 - s, y1t))
-    
-    line((x1 + s, y1h), (x2 - s, y2hh))
-    line((x1 + s, y1h), (x2 - s, y2ht+ 0.5))
-    
-    line((x1 + s, y1t), (x2 - s, y2ht - 0.5))
-    line((x1 + s, y1t), (x2 - s, y2tt))
-    
-    // Node labels
-    content((x0, y0), $S_0 = 4$)
-    content((x1, y1h), $S_1(H) = 8$)
-    content((x1, y1t), $S_1(T) = 2$)
-    content((x2, y2hh), $S_2(H H) = 16$)
-    content((x2, y2ht), $S_2(H T) = S_2(T H) = 4$)
-    content((x2, y2tt), $S_2(T T) = 1$)
-  })
-)
+  #example_tree_1
 The risk-free rates are $tilde(PP)(H H) = tilde(PP)(H T) = tilde(PP)(T H) = tilde(PP)(T T) = 1/4$, while the actual probability measures are $tilde(PP)(H H) = 4/9, tilde(PP)(H T) = tilde(PP)(T H) = 2/9, tilde(PP)(T T) = 1/9$. Consider an agent that seeks to maximize $EE ln(X_2)$, i.e. the agent has the utility function $ln$. 
 
 After a few menial calculations, we arrive at 

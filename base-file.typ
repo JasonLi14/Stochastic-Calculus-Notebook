@@ -266,3 +266,39 @@
   $tilde(EE)_(body)$
 }
 
+#let example_tree_1 = align(center,
+  cetz.canvas({
+    import cetz.draw: *
+    
+    let s = 1.2
+    let x0 = 0
+    let x1 = 4
+    let x2 = 8
+    
+    let y0 = 0
+    let y1h = 1
+    let y1t = -1
+    let y2hh = 2
+    let y2ht = 0
+    let y2tt = -2
+    
+    // Draw tree branches
+    line((x0 + s, y0), (x1 - s, y1h))
+    line((x0 + s, y0), (x1 - s, y1t))
+    
+    line((x1 + s, y1h), (x2 - s, y2hh))
+    line((x1 + s, y1h), (x2 - s, y2ht+ 0.5))
+    
+    line((x1 + s, y1t), (x2 - s, y2ht - 0.5))
+    line((x1 + s, y1t), (x2 - s, y2tt))
+    
+    // Node labels
+    content((x0, y0), $S_0 = 4$)
+    content((x1, y1h), $S_1(H) = 8$)
+    content((x1, y1t), $S_1(T) = 2$)
+    content((x2, y2hh), $S_2(H H) = 16$)
+    content((x2, y2ht), $S_2(H T) = S_2(T H) = 4$)
+    content((x2, y2tt), $S_2(T T) = 1$)
+  })
+)
+

@@ -1,6 +1,11 @@
 #import "../base-file.typ": *
 
-#show: dvdtyp.with()
+#show: dvdtyp.with(
+    title: "Probability Theory (Finite)",
+    subtitle: [Volume 1, Chapter 2],
+    abstract: ""
+)
+
 
 = Probability Theory on Coin Toss Space
 

@@ -90,3 +90,39 @@ We now want a way to adapt our stochastic processes to "incorporate" early exerc
 == General Amercian Derivatives
 We now consider American derivative securities that may be path-dependent. 
 
+#definition("American Derivative Security with Intrinic Value Process")[
+    Let $G_n$ be a random variable depending on the first $n$ flips $flips(n)$. Then, an *American Derivative Security with Intrinsic Value Process* $G_n$ is a contract that can be exercised at any time prior to time $N$ for payoff $G_n$. Define the price process $V_n$ for this contract by the Amercian risk-neutral pricing formula
+    $ V_n = max_(tau in cal(S)_n) tilde(EE)_n [II_{tau <= N} 1/(1+r)^(tau-n) G_tau], " " n = 0, dots, N. $
+    Here, $cal(S)$ is the set of stopping times with values in ${n, dots, N, infinity}$. $II$ means indicator, i.e. the inside should equal zero if the stopping-time is $infinity$. 
+]
+
+#remark[
+    This definition forces $V_N = max(G_N, 0)$,. To see this, If $tau in cal(S)_N$, then $tau$ can only take on the values $N$ or $infinity$. Then, $V_N = max_(tau in cal(S)_N) tilde(EE)_N [II_{tau <= N} 1/(1+r)^(tau-N) G_tau]= max_(tau in cal(S)_N) tilde(EE)_N [II_{tau = N} G_N]$. To maximize this, we can choose $tau = N$ if $G_N flips(N) > 0$ and $tau = infinity$ if $G_N flips(N) <= 0$, leading to $max_(tau in cal(S)_N) tilde(EE)_N [II_{tau = N} G_N = max(0, G_N)$. 
+]
+
+#example[
+    Consider the following tree of intrinsic values of an American put:
+    #two_period_tree(1, -3, 3, -11, 1, 4, "G")
+    associated with the corresponding stock price process with $u=2$, $d=1/2$, and $r=1/4$.
+
+    Using our remark, we get that
+    $ V_2(H H) = 0, V_2(H T) = V_2(T H) = 1, V_2(T T) = 4. $
+    For $n=1$ given $omega_1 = H$, we get
+    $ V_1 ( H ) = max_(tau in cal(S)_1) tilde(E)_1 [II_{tau <= 2} (4/5)^(tau - 1) G_tau] (H). $ To maximize, take $tau(H H) = infinity$ and $tau(H T) = 2$ to get $ V_1(H) = 1/2 dot 0 + 1/2 dot (4/5)^(2-1) G_2 (H T) = 0.40 $
+    To get $V_1(T)$, take $tau(T T) = tau(T H) = 1$ to maximize, obtaining 
+    $tilde(EE)_1 [II_{tau <= 2} (4/5)^(tau - 1) G_tau] (T) = G_1 (T) = 3$. We can verify that $tau( T H ) = tau( T T) = 2$ gives us that $tilde(EE)_1 [dots] = 2$. 
+
+    To maximize $V_0$, $tau(T T) = tau (T H) = 1$, $tau( H H) = infinity$, and $tau (H T) = 2$ works and we get 
+    $V_0 = 1/4 dot 0 + 1/4 (4/5)^2 G_2(H T) + 1/2 dot 4/5 dot G_1(T) = 1.36$, as expected.
+]
+
+#theorem("Properties of American Derivative Security Process")[
+    The American derivative security process has the following properties:
++ $V_n >= max{G_n, 0}$ for all $n$.
++ The discounted process $1/(1+r)^n V_n$ is a supermartingale.
++ If $Y_n$ is another process satisfying $Y_n >= max{G_n, 0}$ for all $n$ and $1/(1+r)^n Y_n$ is a supermartingale, then $Y_n >= V_n$ for all $n$. In other words, $V_n$ is the smallest process satisfying 1 and 2.
+]
+
+This theorem is important because property 1 guarantees that the hedging portfolio fully hedges the short position in the derivative security, property 2 guarantees that a hedging portfolio can be constructed (hence $V_n$ is an acceptable price for the seller), and property 3 shows that this is the best price for the buyer.
+
+*Proof*: 

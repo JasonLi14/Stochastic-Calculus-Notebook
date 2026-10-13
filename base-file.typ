@@ -266,7 +266,7 @@
   $tilde(EE)_(body)$
 }
 
-#let example_tree_1 = align(center,
+#let two_period_tree(a, b, c, d, e, f, letter) = align(center,
   cetz.canvas({
     import cetz.draw: *
     
@@ -293,12 +293,14 @@
     line((x1 + s, y1t), (x2 - s, y2tt))
     
     // Node labels
-    content((x0, y0), $S_0 = 4$)
-    content((x1, y1h), $S_1(H) = 8$)
-    content((x1, y1t), $S_1(T) = 2$)
-    content((x2, y2hh), $S_2(H H) = 16$)
-    content((x2, y2ht), $S_2(H T) = S_2(T H) = 4$)
-    content((x2, y2tt), $S_2(T T) = 1$)
+    content((x0, y0), $letter_0 = #a$)
+    content((x1, y1h), $letter_1(H) = #b$)
+    content((x1, y1t), $letter_1(T) = #c$)
+    content((x2, y2hh), $letter_2(H H) = #d$)
+    content((x2, y2ht), $letter_2(H T) = letter_2(T H) = #e$)
+    content((x2, y2tt), $letter_2(T T) = #f$)
   })
 )
+
+#let example_tree_1 = two_period_tree(4, 8, 2, 16, 4, 1, "S")
 
